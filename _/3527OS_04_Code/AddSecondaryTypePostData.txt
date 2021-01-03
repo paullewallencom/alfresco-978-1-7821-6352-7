@@ -1,0 +1,3 @@
+cmisaction=update&propertyId[0]=cmis%3AsecondaryObjectTypeIds&propertyValue[0][0]=P%3Acm%3Aeffectivity&propertyValue[0][1]=P%3Acm%3AthumbnailModification&propertyValue[0][2]=P%3Aexif%3Aexif&propertyValue[0][3]=P%3Acm%3Atitled&propertyValue[0][4]=P%3Acm%3Aauthor&propertyValue[0][5]=P%3Arn%3Arenditioned&propertyValue[0][6]=P%3Asys%3Alocalized&propertyId[1]=cm%3Afrom&propertyValue[1]=1387130400000&propertyId[2]=cm%3Ato&propertyValue[2]=1393610400000
+
+

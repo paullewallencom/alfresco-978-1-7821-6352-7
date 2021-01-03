@@ -1,0 +1,1 @@
+cmisaction=createFolder&propertyId%5B0%5D=cmis%3Aname&propertyValue%5B0%5D=CMIS+Demo+Browser+Binding2&propertyId%5B1%5D=cmis%3AobjectTypeId&propertyValue%5B1%5D=cmis%3Afolder

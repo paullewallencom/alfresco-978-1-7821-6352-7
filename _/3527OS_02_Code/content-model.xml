@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<model name="myc:contentModel" xmlns="http://www.alfresco.org/model/dictionary/1.0">
+
+    <!-- Optional meta-data about the model -->
+    <description>Test Document Content Model</description>
+    <author>Martin Bergljung</author>
+    <version>1.0</version>
+
+    <imports>
+        <import uri="http://www.alfresco.org/model/dictionary/1.0" prefix="d" />
+        <import uri="http://www.alfresco.org/model/content/1.0" prefix="cm" />
+    </imports>
+
+    <namespaces>
+        <namespace uri="http://www.mycompany.com/model/content/1.0" prefix="myc" />
+    </namespaces>
+
+    <constraints>
+        <constraint name="myc:language_options" type="LIST">
+            <parameter name="allowedValues">
+                <list>
+                    <value></value>
+                    <value>En</value>
+                    <value>Fr</value>
+                    <value>Sv</value>
+                </list>
+            </parameter>
+        </constraint>
+
+        <constraint name="myc:country_options" type="LIST">
+            <parameter name="allowedValues">
+                <list>
+                    <value></value>
+                    <value>UK</value>
+                    <value>France</value>
+                    <value>Sweden</value>
+                </list>
+            </parameter>
+        </constraint>
+
+        <constraint name="myc:department_options" type="LIST">
+            <parameter name="allowedValues">
+                <list>
+                    <value></value>
+                    <value>A</value>
+                    <value>HR</value>
+                    <value>FS</value>
+                    <value>IT</value>
+                    <value>M</value>
+                    <value>L</value>
+                </list>
+            </parameter>
+        </constraint>
+    </constraints>
+
+    <types>
+        <type  name="myc:document" >
+            <title>MyCompany Base Doc</title>
+            <parent>cm:content</parent>
+            <mandatory-aspects>
+                <aspect>myc:documentData</aspect>
+            </mandatory-aspects>
+        </type>
+
+        <type name="myc:financeDoc">
+            <title>MyCompany Finance Doc</title>
+            <parent>myc:document</parent>
+        </type>
+
+        <type name="myc:marketingDoc">
+            <title>MyCompany Marketing Doc</title>
+            <parent>myc:document</parent>
+        </type>
+
+        <type name="myc:legalDoc">
+            <title>MyCompany Legal Doc</title>
+            <parent>myc:document</parent>
+        </type>
+
+        <type name="myc:prDoc">
+            <title>MyCompany PR Doc</title>
+            <parent>myc:document</parent>
+        </type>
+
+        <type name="myc:itDoc">
+            <title>MyCompany IT Doc</title>
+            <parent>myc:document</parent>
+        </type>
+    </types>
+
+    <aspects>
+        <aspect name="myc:documentData">
+            <title>Document Data</title>
+            <properties>
+                <property name="myc:department">
+                    <title>Department</title>
+                    <type>d:text</type>
+                    <constraints>
+                        <constraint ref="myc:department_options" />
+                    </constraints>
+                </property>
+                <property name="myc:language">
+                    <title>Language</title>
+                    <type>d:text</type>
+                    <constraints>
+                        <constraint ref="myc:language_options"/>
+                    </constraints>
+                </property>
+                <property name="myc:countries">
+                    <title>Countries</title>
+                    <type>d:text</type>
+                    <multiple>true</multiple>
+                    <constraints>
+                        <constraint ref="myc:country_options"/>
+                    </constraints>
+                </property>
+            </properties>
+        </aspect>
+    </aspects>
+
+</model>

@@ -1,0 +1,15 @@
+<html>
+<body>
+<form 
+	name="createFoldeForm" 
+	action="http://localhost:8080/alfresco/cmisbrowser/f0ebcfb4-ca9f-4991-bda8-9465f4f11527/root" 
+	method="post">
+	<input name="cmisaction" type="hidden" value="createFolder" />
+	<input name="propertyId[0]" type="hidden" value="cmis:name" />
+	Folder name: <input name="propertyValue[0]" type="text" value="CMIS Demo Browser Binding" /> <br/>
+	<input name="propertyId[1]" type="hidden" value="cmis:objectTypeId" />
+	<input name="propertyValue[1]" type="hidden" value="cmis:folder" />
+	<input type="submit" value="Create Folder" />    
+</form>
+</body>
+</html>

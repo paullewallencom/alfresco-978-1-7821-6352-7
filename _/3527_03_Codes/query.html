@@ -1,0 +1,15 @@
+<html>
+<body>
+<form name="queryForm" action="http://localhost:8080/alfresco/cmisbrowser/f0ebcfb4-ca9f-4991-bda8-9465f4f11527" method="post" enctype="multipart/form-data">
+	<input name="cmisaction" type="hidden" value="query" />
+	<input name="statement" type="text" value="SELECT cmis:name FROM cmis:document WHERE cmis:name like '%alfresco%'" />
+	<input name="searchAllVersions" type="hidden" value="false" />
+	<input name="includeRelationships" type="hidden" value="none" />
+	<input name="renditionFilter" type="hidden" value="cmis:none" />
+	<input name="includeAllowableActions" type="hidden" value="false" />
+	<input name="maxItems" type="hidden" value="10" />
+	<input name="skipCount" type="hidden" value="0" />
+	<input type="submit" value="Search" />    
+</form>
+</body>
+</html>

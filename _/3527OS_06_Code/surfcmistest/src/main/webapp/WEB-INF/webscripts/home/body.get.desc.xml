@@ -1,0 +1,5 @@
+<webscript>
+  <shortname>Body WebScript</shortname>
+  <description>A basic example of a WebScript that could used as a reuable body</description>
+  <url>/my/body</url>
+</webscript>

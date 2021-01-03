@@ -1,0 +1,17 @@
+<html>
+<body>
+<form 
+	name="createDocumentForm" 
+	action="http://localhost:8080/alfresco/cmisbrowser/f0ebcfb4-ca9f-4991-bda8-9465f4f11527/root" 
+	method="post"
+	enctype="multipart/form-data">
+	<input name="cmisaction" type="hidden" value="createDocument" />
+	<input name="propertyId[0]" type="hidden" value="cmis:name" />
+	File name: <input name="propertyValue[0]" type="text" value="Simple (from Browser binding).txt" />
+	File: <input name="content" type="file">
+	<input name="propertyId[1]" type="hidden" value="cmis:objectTypeId" />
+	<input name="propertyValue[1]" type="hidden" value="cmis:document" />
+	<input type="submit" value="Create Document" />    
+</form>
+</body>
+</html>

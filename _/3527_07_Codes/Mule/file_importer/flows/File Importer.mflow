@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<mule-configuration xmlns="http://www.mulesoft.com/tooling/messageflow" name="File Importer">
+    <global-element name="CMIS" type="http://www.mulesoft.org/schema/mule/cmis/config" entity-id="CMIS#1">
+        <properties>
+            <property name="name" value="CMIS"/>
+            <property name="auxiliary;index" value="1"/>
+            <property name="username" value="admin"/>
+            <property name="password" value="admin"/>
+            <property name="auxiliary;index" value="1"/>
+            <property name="repositoryId" value="f0ebcfb4-ca9f-4991-bda8-9465f4f11527"/>
+            <property name="baseUrl" value="http://localhost:8080/alfresco/cmisatom"/>
+            <property name="auxiliary;index" value="1"/>
+            <property name="connectionTimeout"/>
+            <property name="useAlfrescoExtension"/>
+            <property name="auxiliary;index" value="1"/>
+            <property name="auxiliary;index" value="1"/>
+            <property name="auxiliary;index" value="1"/>
+        </properties>
+    </global-element>
+    <flow SubFlow="false" name="File_ImporterFlow1" entity-id="2fd69366-ab56-40c5-8cf3-2ac14f394be7">
+        <properties>
+            <property name="processingStrategy2"/>
+            <property name="processingStrategy"/>
+            <property name="auxiliary;index" value="2"/>
+            <property name="bussinessEventsLabel"/>
+            <property name="tracking:enable-default-events"/>
+            <property name="auxiliary;index" value="2"/>
+            <property name="auxiliary;index" value="2"/>
+            <property name="auxiliary;index" value="2"/>
+        </properties>
+        <lane hadOnlyOneElement="false" index="0" isChoiceOtherwiseLane="false" entity-id="compartment-lane#1">
+            <endpoint direction="Inbound" message-exchange-pattern="OneWay" name="Incoming File" type="http://www.mulesoft.org/schema/mule/file/endpoint" entity-id="File#1">
+                <properties>
+                    <property name="reverseOrder" value="false"/>
+                    <property name="moveToPattern" value=""/>
+                    <property name="pollingFrequency" value="3000"/>
+                    <property name="comparator" value=""/>
+                    <property name="disableTransportTransformer" value="false"/>
+                    <property name="exchange-pattern" value="one-way"/>
+                    <property name="ref" value=""/>
+                    <property name="transformer-refs" value=""/>
+                    <property name="moveToDirectory" value=""/>
+                    <property name="address" value=""/>
+                    <property name="fileAge" value="500"/>
+                    <property name="auxiliary;erased;encoding" value="true"/>
+                    <property name="path" value="/home/mbergljung/MuleStudio/workspace/file_importer/inboundFiles"/>
+                    <property name="encoding" value=""/>
+                    <property name="responseTimeout" value="10000"/>
+                    <property name="mimeType" value="application/pdf"/>
+                    <property name="connector-ref" value=""/>
+                    <property name="auxiliary;index" value="3"/>
+                    <property name="updated"/>
+                </properties>
+                <description></description>
+            </endpoint>
+            <pattern name="Object to Byte Array" type="http://www.mulesoft.org/schema/mule/core/object-to-byte-array-transformer" entity-id="Object to Byte Array#1">
+                <properties>
+                    <property name="returnClass"/>
+                    <property name="ignoreBadInput"/>
+                    <property name="encoding"/>
+                    <property name="auxiliary;index" value="4"/>
+                    <property name="mimeType" value="application/pdf"/>
+                    <property name="auxiliary;index" value="4"/>
+                    <property name="auxiliary;index" value="4"/>
+                    <property name="auxiliary;index" value="4"/>
+                </properties>
+            </pattern>
+            <pattern name="Store File as Doc in Alfresco" type="http://www.mulesoft.org/schema/mule/cmis/cmis-connector" entity-id="CMIS#2">
+                <properties>
+                    <property name="config-ref" value="CMIS"/>
+                    <property name="org.mule.tooling.ui.modules.core.widgets.meta.ModeAttribute" value="http://www.mulesoft.org/schema/mule/cmis/create-document-by-path"/>
+                    <property name="config-ref" value="CMIS"/>
+                    <property name="auxiliary;index" value="5"/>
+                    <property name="filename" value="#[header:originalFilename]"/>
+                    <property name="folderPath" value="/MuleFiles"/>
+                    <property name="mimeType" value="application/pdf"/>
+                    <property name="objectType" value="cmis:document"/>
+                    <property name="versioningState" value="MAJOR"/>
+                    <property name="force"/>
+                    <property name="auxiliary;index" value="5"/>
+                    <property name="auxiliary;index" value="5"/>
+                    <property name="auxiliary;index" value="5"/>
+                    <property name="auxiliary;index" value="5"/>
+                    <property name="auxiliary;index" value="5"/>
+                    <property name="auxiliary;index" value="5"/>
+                    <property name="auxiliary;index" value="5"/>
+                    <property name="auxiliary;index" value="5"/>
+                </properties>
+            </pattern>
+        </lane>
+    </flow>
+    <description></description>
+</mule-configuration>

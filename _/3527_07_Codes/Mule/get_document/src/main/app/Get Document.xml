@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<mule xmlns:scripting="http://www.mulesoft.org/schema/mule/scripting" xmlns:http="http://www.mulesoft.org/schema/mule/http" xmlns:cmis="http://www.mulesoft.org/schema/mule/cmis" xmlns:file="http://www.mulesoft.org/schema/mule/file" xmlns="http://www.mulesoft.org/schema/mule/core" xmlns:doc="http://www.mulesoft.org/schema/mule/documentation" xmlns:spring="http://www.springframework.org/schema/beans" version="CE-3.3.1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="
+http://www.mulesoft.org/schema/mule/http http://www.mulesoft.org/schema/mule/http/current/mule-http.xsd 
+http://www.mulesoft.org/schema/mule/file http://www.mulesoft.org/schema/mule/file/current/mule-file.xsd 
+http://www.mulesoft.org/schema/mule/cmis http://www.mulesoft.org/schema/mule/cmis/1.1/mule-cmis.xsd 
+http://www.mulesoft.org/schema/mule/scripting http://www.mulesoft.org/schema/mule/scripting/current/mule-scripting.xsd 
+http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-current.xsd 
+http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd ">
+
+    <cmis:config name="CMIS" username="admin" password="admin" repositoryId="f0ebcfb4-ca9f-4991-bda8-9465f4f11527" baseUrl="http://localhost:8080/alfresco/cmisatom" doc:name="CMIS"/>
+    <flow name="Get_DocumentFlow1" doc:name="Get_DocumentFlow1">
+        <http:inbound-endpoint exchange-pattern="one-way" host="localhost" port="8081" path="getdoc" doc:name="HTTP"/>
+        <cmis:get-content-stream config-ref="CMIS"  doc:name="CMIS" objectId="workspace://SpacesStore/#[groovy:message.getProperty('id',org.mule.api.transport.PropertyScope.INBOUND)]"/>
+        <scripting:transformer doc:name="Groovy">
+            <scripting:script engine="Groovy">
+                <scripting:text><![CDATA[println message.payload.filename
+message.setProperty("filename", message.payload.filename);
+return message.payload.stream;]]></scripting:text>
+			</scripting:script>
+        </scripting:transformer>
+        <file:outbound-endpoint responseTimeout="10000" doc:name="Outgoing File" outputPattern="#[groovy:message.getProperty('filename',org.mule.api.transport.PropertyScope.OUTBOUND)]" path="/home/mbergljung/MuleStudio/workspace/get_document/Output"/>
+    </flow>
+</mule>
